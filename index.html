@@ -309,6 +309,76 @@ nav.navbar a:hover {
   margin-top: 10px;
   cursor: pointer;
 }
+/* ===== FOOTER ===== */
+.footer {
+  background: #0b0b0b;
+  padding: 50px 6%;
+  color: #ccc;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.footer i{
+  color: limegreen;
+}
+.footer-logo {
+  font-size: 45px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.footer-social a {
+  margin-right: 12px;
+  color: white;
+  font-size: 18px;
+  transition: 0.3s;
+}
+.footer-social a:hover {
+  color: var(--accent);
+}
+
+.footer-section {
+  min-width: 150px;
+  margin-top: 70px;
+}
+
+.footer-section h3 {
+  color: white;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.footer-section a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+.footer-section a:hover {
+  color: var(--accent);
+}
+
+.footer-copy {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: #777;
+  font-size: 14px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+}
+
 </style>
 </head>
 <body>
@@ -316,8 +386,8 @@ nav.navbar a:hover {
 <header>
   <a class="logo" href="#"><i class="fas fa-infinity"></i> ChillBox</a>
   <nav class="navbar">
-    <a class="active" href="index.html">Movies</a>
-    <a href="Music.Html">Music</a>
+    <a class="active" href="#movies">Movies</a>
+    <a href="Music.html">Music</a>
     <a href="#">Games</a>
     <a href="#">About</a>
   </nav>
@@ -366,6 +436,43 @@ nav.navbar a:hover {
   <span class="closeBtn" onclick="closeModal()">&times;</span>
   <div id="modalContent"></div>
 </div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-content">
+
+    <div class="footer-brand">
+      <h2 class="footer-logo"><i class="fas fa-infinity"></i> ChillBox</h2>
+      <p>Stream Movies, play<br>Games, and enjoy<br>Music – all in one place.</p>
+
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Sections</h3>
+      <a href="#movies">Movies</a>
+      <a href="Music.html">Music</a>
+      <a href="#">Games</a>
+      <a href="#">About Us</a>
+    </div>
+
+    <div class="footer-section">
+      <h3>Support</h3>
+      <a href="#">FAQ</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+
+  </div>
+
+  <p class="footer-copy">© 2025 ChillBox Entertainment. All rights reserved.</p>
+</footer>
+
 
 <script>
 const API_KEY = "166830f0c57dfdbf8f9a4ebeb942d300";
@@ -789,5 +896,3 @@ function closeModal() {
 </script>
 </body>
 </html>
-
-
