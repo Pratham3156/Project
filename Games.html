@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* Your existing CSS remains exactly the same */
+    /* Your existing CSS remains the same */
     :root {
       --black: #101820;
       --accent: #1db954;
@@ -1374,10 +1374,9 @@
       }
     }
 
-    // Create real games with actual game posters - 200+ games
+    // Create real games with actual game posters
     function createRealGames() {
-      const games = [
-        // Original 16 games
+      return [
         {
           name: "The Witcher 3: Wild Hunt",
           description_raw: "As war rages on, you take on the greatest contract of your life - tracking down the Child of Prophecy, a living weapon that can alter the shape of the world.",
@@ -1539,144 +1538,6 @@
           url: "https://cdn.htmlgames.com/RacingExtreme/"
         }
       ];
-
-      // Generate 200+ additional games
-      const additionalGames = generateAdditionalGames(200);
-      return [...games, ...additionalGames];
-    }
-
-    // Generate additional games to reach 200+
-    function generateAdditionalGames(count) {
-      const gameTemplates = [
-        // Action Games
-        { name: "Doom Eternal", category: "action", rating: "4.5", image: "co2r8a" },
-        { name: "Battlefield 2042", category: "action", rating: "3.8", image: "co3lci" },
-        { name: "Titanfall 2", category: "action", rating: "4.7", image: "co1rxi" },
-        { name: "Far Cry 6", category: "action", rating: "4.1", image: "co2vw2" },
-        { name: "Borderlands 3", category: "action", rating: "4.2", image: "co1x0j" },
-        { name: "Destiny 2", category: "action", rating: "4.3", image: "co1tmu" },
-        { name: "Apex Legends", category: "action", rating: "4.4", image: "co2r8y" },
-        { name: "Overwatch 2", category: "action", rating: "4.0", image: "co3p0w" },
-        { name: "Rainbow Six Siege", category: "action", rating: "4.6", image: "co1r66" },
-        { name: "Counter-Strike 2", category: "action", rating: "4.8", image: "co3p0x" },
-
-        // Adventure Games
-        { name: "Horizon Forbidden West", category: "adventure", rating: "4.7", image: "co2r8z" },
-        { name: "Assassin's Creed Valhalla", category: "adventure", rating: "4.3", image: "co2r90" },
-        { name: "Ghost of Tsushima", category: "adventure", rating: "4.8", image: "co2r91" },
-        { name: "Star Wars Jedi: Survivor", category: "adventure", rating: "4.5", image: "co2r92" },
-        { name: "The Legend of Zelda: Tears of the Kingdom", category: "adventure", rating: "4.9", image: "co2r93" },
-        { name: "Elden Ring", category: "adventure", rating: "4.9", image: "co2r94" },
-        { name: "Hogwarts Legacy", category: "adventure", rating: "4.6", image: "co2r95" },
-        { name: "Spider-Man: Miles Morales", category: "adventure", rating: "4.7", image: "co2r96" },
-        { name: "Resident Evil 4 Remake", category: "adventure", rating: "4.8", image: "co2r97" },
-        { name: "Final Fantasy XVI", category: "adventure", rating: "4.6", image: "co2r98" },
-
-        // Racing Games
-        { name: "Need for Speed Heat", category: "racing", rating: "4.0", image: "co2r99" },
-        { name: "Gran Turismo 7", category: "racing", rating: "4.5", image: "co2r9a" },
-        { name: "Mario Kart 8 Deluxe", category: "racing", rating: "4.8", image: "co2r9b" },
-        { name: "F1 2023", category: "racing", rating: "4.2", image: "co2r9c" },
-        { name: "Burnout Paradise Remastered", category: "racing", rating: "4.3", image: "co2r9d" },
-        { name: "Trackmania", category: "racing", rating: "4.1", image: "co2r9e" },
-        { name: "Dirt 5", category: "racing", rating: "3.9", image: "co2r9f" },
-        { name: "Wreckfest", category: "racing", rating: "4.4", image: "co2r9g" },
-        { name: "Hot Wheels Unleashed", category: "racing", rating: "4.0", image: "co2r9h" },
-        { name: "Asphalt 9: Legends", category: "racing", rating: "4.2", image: "co2r9i" },
-
-        // Sports Games
-        { name: "NBA 2K24", category: "sports", rating: "3.8", image: "co2r9j" },
-        { name: "Madden NFL 24", category: "sports", rating: "3.9", image: "co2r9k" },
-        { name: "Tony Hawk's Pro Skater 1+2", category: "sports", rating: "4.7", image: "co2r9l" },
-        { name: "WWE 2K23", category: "sports", rating: "4.0", image: "co2r9m" },
-        { name: "MLB The Show 23", category: "sports", rating: "4.3", image: "co2r9n" },
-        { name: "PGA Tour 2K23", category: "sports", rating: "4.1", image: "co2r9o" },
-        { name: "UFC 5", category: "sports", rating: "3.9", image: "co2r9p" },
-        { name: "Steep", category: "sports", rating: "4.0", image: "co2r9q" },
-        { name: "Riders Republic", category: "sports", rating: "4.2", image: "co2r9r" },
-        { name: "OlliOlli World", category: "sports", rating: "4.4", image: "co2r9s" },
-
-        // Puzzle Games
-        { name: "Tetris Effect: Connected", category: "puzzle", rating: "4.8", image: "co2r9t" },
-        { name: "The Witness", category: "puzzle", rating: "4.6", image: "co2r9u" },
-        { name: "Baba Is You", category: "puzzle", rating: "4.7", image: "co2r9v" },
-        { name: "Return of the Obra Dinn", category: "puzzle", rating: "4.8", image: "co2r9w" },
-        { name: "The Talos Principle", category: "puzzle", rating: "4.5", image: "co2r9x" },
-        { name: "Portal Reloaded", category: "puzzle", rating: "4.4", image: "co2r9y" },
-        { name: "Human: Fall Flat", category: "puzzle", rating: "4.2", image: "co2r9z" },
-        { name: "Unpacking", category: "puzzle", rating: "4.6", image: "co2ra0" },
-        { name: "Dorfromantik", category: "puzzle", rating: "4.3", image: "co2ra1" },
-        { name: "A Little to the Left", category: "puzzle", rating: "4.1", image: "co2ra2" },
-
-        // Strategy Games
-        { name: "Civilization VI", category: "strategy", rating: "4.7", image: "co2ra3" },
-        { name: "XCOM 2", category: "strategy", rating: "4.6", image: "co2ra4" },
-        { name: "Crusader Kings III", category: "strategy", rating: "4.8", image: "co2ra5" },
-        { name: "Total War: Warhammer III", category: "strategy", rating: "4.4", image: "co2ra6" },
-        { name: "Age of Empires IV", category: "strategy", rating: "4.5", image: "co2ra7" },
-        { name: "Into the Breach", category: "strategy", rating: "4.7", image: "co2ra8" },
-        { name: "Frostpunk", category: "strategy", rating: "4.6", image: "co2ra9" },
-        { name: "Northgard", category: "strategy", rating: "4.3", image: "co2raa" },
-        { name: "RimWorld", category: "strategy", rating: "4.9", image: "co2rab" },
-        { name: "Stellaris", category: "strategy", rating: "4.7", image: "co2rac" },
-
-        // Arcade Games
-        { name: "Cuphead", category: "arcade", rating: "4.8", image: "co2rad" },
-        { name: "Hollow Knight", category: "arcade", rating: "4.9", image: "co2rae" },
-        { name: "Celeste", category: "arcade", rating: "4.8", image: "co2raf" },
-        { name: "Dead Cells", category: "arcade", rating: "4.7", image: "co2rag" },
-        { name: "Shovel Knight", category: "arcade", rating: "4.8", image: "co2rah" },
-        { name: "Katana ZERO", category: "arcade", rating: "4.6", image: "co2rai" },
-        { name: "The Binding of Isaac: Rebirth", category: "arcade", rating: "4.8", image: "co2raj" },
-        { name: "Enter the Gungeon", category: "arcade", rating: "4.7", image: "co2rak" },
-        { name: "Risk of Rain 2", category: "arcade", rating: "4.6", image: "co2ral" },
-        { name: "Spelunky 2", category: "arcade", rating: "4.7", image: "co2ram" },
-
-        // Multiplayer Games
-        { name: "Valorant", category: "multiplayer", rating: "4.3", image: "co2ran" },
-        { name: "League of Legends", category: "multiplayer", rating: "4.2", image: "co2rao" },
-        { name: "Dota 2", category: "multiplayer", rating: "4.4", image: "co2rap" },
-        { name: "Team Fortress 2", category: "multiplayer", rating: "4.6", image: "co2raq" },
-        { name: "Paladins", category: "multiplayer", rating: "4.0", image: "co2rar" },
-        { name: "Smite", category: "multiplayer", rating: "4.1", image: "co2ras" },
-        { name: "Fall Guys", category: "multiplayer", rating: "4.2", image: "co2rat" },
-        { name: "Gang Beasts", category: "multiplayer", rating: "4.0", image: "co2rau" },
-        { name: "Pummel Party", category: "multiplayer", rating: "3.9", image: "co2rav" },
-        { name: "Jackbox Party Pack", category: "multiplayer", rating: "4.5", image: "co2raw" }
-      ];
-
-      const additionalGames = [];
-      const descriptions = [
-        "An epic adventure awaits in this critically acclaimed masterpiece.",
-        "Experience thrilling gameplay with stunning visuals and immersive storytelling.",
-        "Join millions of players in this award-winning gaming experience.",
-        "Master challenging mechanics and uncover deep secrets in this fan-favorite.",
-        "Compete with friends or go solo in this unforgettable gaming journey.",
-        "Discover a rich world filled with memorable characters and epic quests.",
-        "Push your skills to the limit in this competitive gaming phenomenon.",
-        "Explore vast open worlds and create your own unique stories.",
-        "Team up with friends or face challenges alone in this modern classic.",
-        "Experience next-generation gaming with groundbreaking features and gameplay."
-      ];
-
-      for (let i = 0; i < count; i++) {
-        const template = gameTemplates[i % gameTemplates.length];
-        const description = descriptions[Math.floor(Math.random() * descriptions.length)];
-        const playtime = Math.floor(Math.random() * 5000000) + 1000000;
-        
-        additionalGames.push({
-          name: `${template.name} ${Math.floor(i / 10) + 1}`,
-          description_raw: description,
-          background_image: `https://images.igdb.com/igdb/image/upload/t_cover_big/${template.image}.jpg`,
-          slug: `game-${i + 100}`,
-          category: template.category,
-          rating: (parseFloat(template.rating) + (Math.random() * 0.4 - 0.2)).toFixed(1),
-          playtime: playtime,
-          url: `https://cdn.htmlgames.com/Game${i + 100}/`
-        });
-      }
-
-      return additionalGames;
     }
 
     // Create sample games when API fails
@@ -1719,7 +1580,7 @@
       return sampleGames;
     }
 
-    // Rest of your existing functions remain exactly the same...
+    // Rest of your existing functions (setupHero, buildSections, etc.)
     function setupHero(games) {
       if (games.length === 0) {
         hero.innerHTML = `<div class="hero-slide active" style="background:linear-gradient(135deg, #1db954, #000)">
