@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChillBox — Feedback Admin Panel</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        background: #000;
+        color: #fff;
+    }
+
+    /* Centered login panel */
+    #loginPage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+        text-align: center;
+    }
+
+    #loginBox {
+        background: rgba(255,255,255,0.06);
+        padding: 30px;
+        border-radius: 16px;
+        width: 90%;
+        max-width: 350px;
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 0 20px rgba(0,255,136,0.18);
+    }
+
+    #loginBox input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+    }
+
+    #loginBox button {
+        width: 100%;
+        padding: 12px;
+        background: #00ff88;
+        margin-top: 20px;
+        border: none;
+        font-size: 16px;
+        color: #000;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    #loginBox button:hover {
+        background: #00cc66;
+    }
+
+    /* ADMIN PANEL */
+    #adminPanel {
+        display: none;
+        padding: 20px;
+        width: 95%;
+        margin: auto;
+        padding-bottom: 100px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #00ff88;
+        margin-bottom: 30px;
+    }
+
+    .top-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .top-controls input,
+    .top-controls select {
+        padding: 10px;
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .clear-btn {
+        background: red;
+        padding: 10px 18px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        margin-left: auto;
+        color: #fff;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th {
+        background: #00ff88;
+        color: #000;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    td {
+        padding: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        font-size: 14px;
+    }
+
+    .delete-btn {
+        padding: 6px 12px;
+        background: #ff4444;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 13px;
+    }
+</style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+    <div id="loginBox">
+        <h2>Admin Login</h2>
+        <input type="password" id="adminPass" placeholder="Enter Password">
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+    <h1>ChillBox Feedback Dashboard</h1>
+
+    <div class="top-controls">
+        <input type="text" id="searchBox" placeholder="Search by name, feature, message..." oninput="filterTable()">
+
+        <select id="filterPage" onchange="filterTable()">
+            <option value="">Filter by Page</option>
+            <option>Movies Page</option>
+            <option>Music Page</option>
+            <option>Games Page</option>
+            <option>About Page</option>
+            <option>Home Page</option>
+            <option>Navigation / UI</option>
+            <option>Overall Website</option>
+        </select>
+
+        <select id="filterRating" onchange="filterTable()">
+            <option value="">Filter by Rating</option>
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+        </select>
+
+        <button class="clear-btn" onclick="clearAll()">Clear All Feedback</button>
+    </div>
+
+    <table id="feedbackTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Page</th>
+                <th>Feature Request</th>
+                <th>Rating</th>
+                <th>Feedback</th>
+                <th>Time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
+<script>
+/* -------------------- ADMIN LOGIN -------------------- */
+function login() {
+    const pass = document.getElementById("adminPass").value;
+
+    // You can change password here:
+    const correctPassword = "Pratham@54";
+
+    if (pass === correctPassword) {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+        loadFeedback();
+    } else {
+        alert("Incorrect password!");
+    }
+}
+
+/* -------------------- LOAD FEEDBACK -------------------- */
+function loadFeedback() {
+    const feedback = JSON.parse(localStorage.getItem("chillboxFeedback")) || [];
+    const tbody = document.querySelector("#feedbackTable tbody");
+    tbody.innerHTML = "";
+
+    feedback.forEach((fb, index) => {
+        const row = `
+            <tr>
+                <td>${fb.name || "Anonymous"}</td>
+                <td>${fb.page}</td>
+                <td>${fb.feature || "—"}</td>
+                <td>${fb.rating || "—"}</td>
+                <td>${fb.message}</td>
+                <td>${fb.time}</td>
+                <td><button class="delete-btn" onclick="deleteFeedback(${index})">Delete</button></td>
+            </tr>
+        `;
+        tbody.innerHTML += row;
+    });
+}
+
+/* -------------------- DELETE FEEDBACK -------------------- */
+function deleteFeedback(index) {
+    let feedback = JSON.parse(localStorage.getItem("chillboxFeedback")) || [];
+    feedback.splice(index, 1);
+    localStorage.setItem("chillboxFeedback", JSON.stringify(feedback));
+    loadFeedback();
+}
+
+/* -------------------- CLEAR ALL -------------------- */
+function clearAll() {
+    if (confirm("Are you sure you want to delete ALL feedback?")) {
+        localStorage.removeItem("chillboxFeedback");
+        loadFeedback();
+    }
+}
+
+/* -------------------- FILTER TABLE -------------------- */
+function filterTable() {
+    const search = document.getElementById("searchBox").value.toLowerCase();
+    const page = document.getElementById("filterPage").value;
+    const rating = document.getElementById("filterRating").value;
+
+    const allFeedback = JSON.parse(localStorage.getItem("chillboxFeedback")) || [];
+
+    const filtered = allFeedback.filter(fb => {
+        const matchesSearch =
+            fb.name?.toLowerCase().includes(search) ||
+            fb.feature?.toLowerCase().includes(search) ||
+            fb.message?.toLowerCase().includes(search);
+
+        const matchesPage = page === "" || fb.page === page;
+        const matchesRating = rating === "" || fb.rating == rating;
+
+        return matchesSearch && matchesPage && matchesRating;
+    });
+
+    const tbody = document.querySelector("#feedbackTable tbody");
+    tbody.innerHTML = "";
+
+    filtered.forEach((fb, index) => {
+        const row = `
+            <tr>
+                <td>${fb.name || "Anonymous"}</td>
+                <td>${fb.page}</td>
+                <td>${fb.feature || "—"}</td>
+                <td>${fb.rating || "—"}</td>
+                <td>${fb.message}</td>
+                <td>${fb.time}</td>
+                <td><button class="delete-btn" onclick="deleteFeedback(${index})">Delete</button></td>
+            </tr>
+        `;
+        tbody.innerHTML += row;
+    });
+}
+</script>
+
+</body>
+</html>
